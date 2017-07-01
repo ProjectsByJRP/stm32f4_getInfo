@@ -35,6 +35,7 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
+#include "stm32f4xx_nucleo.h"
 
 /* USER CODE END Includes */
 
@@ -96,6 +97,9 @@ int main(void)
   MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
+  BSP_LED_Init(LED2);
+  BSP_LED_On(LED2);
+
   char uart2Data[24] = "Connected to UART Two\r\n";
    HAL_UART_Transmit(&huart2, (uint8_t *)&uart2Data,sizeof(uart2Data), 0xFFFF);
 
@@ -245,6 +249,40 @@ int main(void)
  	uint32_t idPart3 = STM32_UUID[2];
  	len += sprintf(idString+len, "%08lX %08lX %08lX\r\n", idPart1, idPart2, idPart3);
  	printf("%s", idString);
+
+
+	len = 0;
+	char myString[512] = {0};
+	len += sprintf(myString+len, "HAL Version: ");
+	uint32_t halVersion = HAL_GetHalVersion();
+	len += sprintf(myString+len, "%d.", (uint8_t)(halVersion >> 24) & 0xff);
+	len += sprintf(myString+len, "%d.", (uint8_t)(halVersion >> 16) & 0xff);
+	len += sprintf(myString+len, "%d ", (uint8_t)(halVersion >> 8) & 0xff);
+	if ((uint8_t)(halVersion >> 0) & 0xff)
+	  {
+		len += sprintf(myString+len, "rc%d\r\n", (uint8_t)(halVersion >> 0) & 0xff);
+	  }
+	else
+	  {
+		len += sprintf(myString+len, "\r\n");
+	  }
+
+	len += sprintf(myString+len, "BSP Version: ");
+	uint32_t bspVersion = BSP_GetVersion();
+	len += sprintf(myString+len, "%d.", (uint8_t)(bspVersion >> 24) & 0xff);
+	len += sprintf(myString+len, "%d.", (uint8_t)(bspVersion >> 16) & 0xff);
+	len += sprintf(myString+len, "%d ", (uint8_t)(bspVersion >> 8) & 0xff);
+	if ((uint8_t)(bspVersion >> 0) & 0xff)
+	  {
+		len += sprintf(myString+len, "rc%d\r\n", (uint8_t)(bspVersion >> 0) & 0xff);
+	  }
+	else
+	  {
+		len += sprintf(myString+len, "\r\n");
+	  }
+	printf("%s", myString);
+
+	printf("\r\n");
 
  	printf("Oscillators and clocks\r\n");
  	printf("----------------------\r\n");

@@ -106,49 +106,58 @@ int main(void)
  	//printf("%s", devidString);
  	switch (idcode)
  	{
-	case 0x410: len += sprintf(devidString+len, "stm32f1xx medium-density\r\n"); break;
-	case 0x411: len += sprintf(devidString+len, "stm32f2xx\r\n"); break;
-	case 0x412: len += sprintf(devidString+len, "stm32f1xx low-density\r\n"); break;
-	case 0x413: len += sprintf(devidString+len, "stm32f4xx\r\n"); break;
-	case 0x414: len += sprintf(devidString+len, "stm32f1xx high-density\r\n"); break;
-	case 0x415: len += sprintf(devidString+len, "stm32l4xx\r\n"); break;
-	case 0x416: len += sprintf(devidString+len, "stm32l1xx medium-density\r\n"); break;
-	case 0x417: len += sprintf(devidString+len, "stm32l0xx\r\n"); break;
-	case 0x418: len += sprintf(devidString+len, "stm32f1xx connectivity line\r\n"); break;
-	case 0x419: len += sprintf(devidString+len, "stm32f4xx high-density\r\n"); break;
-	case 0x420: len += sprintf(devidString+len, "stm32f1xx value line low/medium-density\r\n"); break;
-	case 0x421: len += sprintf(devidString+len, "stm32f446\r\n"); break;
-	case 0x422: len += sprintf(devidString+len, "stm32f3xx\r\n"); break;
-	case 0x423: len += sprintf(devidString+len, "stm32f4xx low power\r\n"); break;
-	case 0x425: len += sprintf(devidString+len, "stm32l0xx cat. 2\r\n"); break;
-	case 0x427: len += sprintf(devidString+len, "stm32l1xx medium-density/plus\r\n"); break;
-	case 0x428: len += sprintf(devidString+len, "stm32f1xx value line high-density\r\n"); break;
-	case 0x429: len += sprintf(devidString+len, "stm32l1xx cat. 2\r\n"); break;
-	case 0x430: len += sprintf(devidString+len, "stm32f1xx xl-density\r\n"); break;
-	case 0x431: len += sprintf(devidString+len, "stm32f411re\r\n"); break;
-	case 0x432: len += sprintf(devidString+len, "stm32f37x\r\n"); break;
-	case 0x433: len += sprintf(devidString+len, "stm32f4xx de\r\n"); break;
-	case 0x434: len += sprintf(devidString+len, "stm32f4xx dsi\r\n"); break;
-	case 0x435: len += sprintf(devidString+len, "stm32l43x\r\n"); break;
-	case 0x436: len += sprintf(devidString+len, "stm32l1xx high-density\r\n"); break;
-	case 0x437: len += sprintf(devidString+len, "stm32l152re\r\n"); break;
-	case 0x438: len += sprintf(devidString+len, "stm32f334\r\n"); break;
-	case 0x439: len += sprintf(devidString+len, "stm32f3xx small\r\n"); break;
-	case 0x440: len += sprintf(devidString+len, "stm32f0xx\r\n"); break;
-	case 0x441: len += sprintf(devidString+len, "stm32f412\r\n"); break;
-	case 0x442: len += sprintf(devidString+len, "stm32f09x\r\n"); break;
-	case 0x444: len += sprintf(devidString+len, "stm32f0xx small\r\n"); break;
-	case 0x445: len += sprintf(devidString+len, "stm32f04x\r\n"); break;
-	case 0x446: len += sprintf(devidString+len, "stm32f303 high-density\r\n"); break;
-	case 0x447: len += sprintf(devidString+len, "stm32l0xx cat. 5\r\n"); break;
-	case 0x448: len += sprintf(devidString+len, "stm32f0xx can\r\n"); break;
-	case 0x449: len += sprintf(devidString+len, "stm32f7\r\n"); break;
-	case 0x451: len += sprintf(devidString+len, "stm32f7xx\r\n"); break;
-	case 0x457: len += sprintf(devidString+len, "stm32l011\r\n"); break;
-	case 0x458: len += sprintf(devidString+len, "stm32f410\r\n"); break;
-	case 0x463: len += sprintf(devidString+len, "stm32f413\r\n"); break;
+	case 0x410: len += sprintf(devidString+len, "stm32f1xx medium-density"); break;
+	case 0x411: len += sprintf(devidString+len, "stm32f2xx"); break;
+	case 0x412: len += sprintf(devidString+len, "stm32f1xx low-density"); break;
+	case 0x413: len += sprintf(devidString+len, "stm32f4xx"); break;
+	case 0x414: len += sprintf(devidString+len, "stm32f1xx high-density"); break;
+	case 0x415: len += sprintf(devidString+len, "stm32l4xx"); break;
+	case 0x416: len += sprintf(devidString+len, "stm32l1xx medium-density"); break;
+	case 0x417: len += sprintf(devidString+len, "stm32l0xx"); break;
+	case 0x418: len += sprintf(devidString+len, "stm32f1xx connectivity line"); break;
+	case 0x419: len += sprintf(devidString+len, "stm32f4xx high-density"); break;
+	case 0x420: len += sprintf(devidString+len, "stm32f1xx value line"); break;
+	case 0x421: len += sprintf(devidString+len, "stm32f446"); break;
+	case 0x422: len += sprintf(devidString+len, "stm32f3xx"); break;
+	case 0x423: len += sprintf(devidString+len, "stm32f4xx low power"); break;
+	case 0x425: len += sprintf(devidString+len, "stm32l0xx cat. 2"); break;
+	case 0x427: len += sprintf(devidString+len, "stm32l1xx medium-density/plus"); break;
+	case 0x428: len += sprintf(devidString+len, "stm32f1xx value line high-density"); break;
+	case 0x429: len += sprintf(devidString+len, "stm32l1xx cat. 2"); break;
+	case 0x430: len += sprintf(devidString+len, "stm32f1xx xl-density"); break;
+	case 0x431: len += sprintf(devidString+len, "stm32f411re"); break;
+	case 0x432: len += sprintf(devidString+len, "stm32f37x"); break;
+	case 0x433: len += sprintf(devidString+len, "stm32f4xx de"); break;
+	case 0x434: len += sprintf(devidString+len, "stm32f4xx dsi"); break;
+	case 0x435: len += sprintf(devidString+len, "stm32l43x"); break;
+	case 0x436: len += sprintf(devidString+len, "stm32l1xx high-density"); break;
+	case 0x437: len += sprintf(devidString+len, "stm32l152re"); break;
+	case 0x438: len += sprintf(devidString+len, "stm32f334"); break;
+	case 0x439: len += sprintf(devidString+len, "stm32f3xx small"); break;
+	case 0x440: len += sprintf(devidString+len, "stm32f0xx"); break;
+	case 0x441: len += sprintf(devidString+len, "stm32f412"); break;
+	case 0x442: len += sprintf(devidString+len, "stm32f09x"); break;
+	case 0x444: len += sprintf(devidString+len, "stm32f0xx small"); break;
+	case 0x445: len += sprintf(devidString+len, "stm32f04x"); break;
+	case 0x446: len += sprintf(devidString+len, "stm32f303 high-density"); break;
+	case 0x447: len += sprintf(devidString+len, "stm32l0xx cat. 5"); break;
+	case 0x448: len += sprintf(devidString+len, "stm32f0xx can"); break;
+	case 0x449: len += sprintf(devidString+len, "stm32f7"); break;
+	case 0x451: len += sprintf(devidString+len, "stm32f7xx"); break;
+	case 0x457: len += sprintf(devidString+len, "stm32l011"); break;
+	case 0x458: len += sprintf(devidString+len, "stm32f410"); break;
+	case 0x463: len += sprintf(devidString+len, "stm32f413"); break;
 	default: len += sprintf(devidString+len, "unknown device\r\n");
  	}
+
+	uint32_t revCode = (DBGMCU->IDCODE & DBGMCU_IDCODE_REV_ID_Msk) >> DBGMCU_IDCODE_REV_ID_Pos;
+	switch (revCode)
+	{
+	case 0x1000: len += sprintf(devidString+len, "  Revision A\r\n"); break;
+	case 0x1001: len += sprintf(devidString+len, "  Revision Z\r\n"); break;
+	default: len += sprintf(devidString+len, " Revision %lX\r\n", revCode); break;
+	}
+
  	printf("%s", devidString);
  	//GUI_DispString(devidString);
 
@@ -206,6 +215,24 @@ int main(void)
  	//len += sprintf(flashString, "%d KB Flash\r\n", *((unsigned short *)0x1FF0F442));
  	len += sprintf(flashString, "%d KB Flash\r\n", *((unsigned short *)FLASHSIZE_BASE));
  	printf("%s", flashString);
+
+
+	len = 0;
+	char pkgString[128] = {0};
+	uint32_t pkg = *((uint32_t *)PACKAGE_BASE) & 0x0700;
+	switch (pkg)
+	{
+	case 0x00000000: len += sprintf(pkgString+len, "WLCSP36, UFQFPN48, or LQFP64\r\n"); break;
+	case 0x00000100: len += sprintf(pkgString+len, "WLCSP168, FBGA169, LQFP100, LQFP64, or UFQFPN48\r\n"); break;
+	case 0x00000200: len += sprintf(pkgString+len, "WLCSP64, WLCSP81, LQFP176, UFBGA1763\r\n"); break;
+	case 0x00000300: len += sprintf(pkgString+len, "LQFP144, UFBGA144, UFBGA144, or UFBGA100\r\n"); break;
+	case 0x00000400: len += sprintf(pkgString+len, "LQFP100, LQFP208, or TFBGA216\r\n"); break;
+	case 0x00000500: len += sprintf(pkgString+len, "LQFP208 or TFBGA216\r\n"); break;
+	case 0x00000600: len += sprintf(pkgString+len, "LQFP176, LQFP208 or TFBGA216\r\n"); break;
+	case 0x00000700: len += sprintf(pkgString+len, "TQFP64, UFBGA144, or LQFP144\r\n"); break;
+	}
+	printf("%s", pkgString);
+
 
  	len = 0;
  	char idString[44] = {0};

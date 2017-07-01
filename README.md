@@ -3,10 +3,11 @@ Reads chip info and core registers
 STM32F4xx - read chip info and core registers, output to UART 2 at 115200 8n1<br>
 Output should look similar to this:<br>
 Connected to UART Two<br>
-stm32f446<br>
+stm32f446  Revision A<br>
 ARM Cortex M4 r0p1<br>
 Single-precision FPU<br>
 512 KB Flash<br>
+WLCSP36, UFQFPN48, or LQFP64<br>
 Device Unique ID: 0029003B 30355105 31303734<br>
 Oscillators and clocks<br>
 ----------------------<br>

@@ -9,6 +9,9 @@ Single precision FPU<br>
 512K Flash, 128K SRAM<br>
 WLCSP36, UFQFPN48, or LQFP64<br>
 Device Unique ID: 0029003B 30355105 31303734<br>
+HAL Version: 1.5.0 <br>
+BSP Version: 1.2.6 <br>
+<br>
 Oscillators and clocks<br>
 ----------------------<br>
             HSE State: Off<br>

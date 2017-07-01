@@ -202,8 +202,8 @@ int main(void)
 	 */
      switch(mvfr0)
      	 {
-     	 case 0x10110021 : len += sprintf(cpuString+len, "Single-precision FPU\r\n"); break;
-     	 case 0x10110221 : len += sprintf(cpuString+len, "Double-precision FPU\r\n"); break;
+     	 case 0x10110021 : len += sprintf(cpuString+len, "Single precision FPU\r\n"); break;
+     	 case 0x10110221 : len += sprintf(cpuString+len, "Double precision FPU\r\n"); break;
      	 //default : len += sprintf(cpuString+len, "No FPU\r\n");
      	 default: ;
      	 }

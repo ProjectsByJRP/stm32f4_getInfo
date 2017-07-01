@@ -210,11 +210,14 @@ int main(void)
      }
  	printf("%s",cpuString);
 
- 	len = 0;
- 	char flashString[14] = {0};
- 	//len += sprintf(flashString, "%d KB Flash\r\n", *((unsigned short *)0x1FF0F442));
- 	len += sprintf(flashString, "%d KB Flash\r\n", *((unsigned short *)FLASHSIZE_BASE));
- 	printf("%s", flashString);
+	len = 0;
+	char memString[512] = {0};
+	switch (idcode)
+	{
+	case 0x421: len += sprintf(memString+len, "%dK Flash, 128K SRAM\r\n", *((unsigned short *)FLASHSIZE_BASE)); break;
+	default: len += sprintf(memString+len, "unknown device\r\n");
+	}
+	printf("%s", memString);
 
 
 	len = 0;

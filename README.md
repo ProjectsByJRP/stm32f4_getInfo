@@ -46,3 +46,4 @@ Core registers<br>
 stack pointer: 0x2001FF28<br>
 link register: 0x08001E83<br>
 <br>
+Developed and tested on STM32F446RE-Nucleo<br>

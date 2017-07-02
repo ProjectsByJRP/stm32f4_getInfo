@@ -3,6 +3,11 @@
   * File Name          : main.c
   * Description        : Main program body
   ******************************************************************************
+  ** This notice applies to any and all portions of this file
+  * that are not between comment pairs USER CODE BEGIN and
+  * USER CODE END. Other portions of this file, whether 
+  * inserted by the user or by software development tools
+  * are owned by their respective copyright owners.
   *
   * COPYRIGHT(c) 2017 STMicroelectronics
   *
@@ -51,7 +56,6 @@ RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 
@@ -87,8 +91,16 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
   /* Configure the system clock */
   SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
@@ -156,7 +168,6 @@ int main(void)
 	switch (revCode)
 	{
 	case 0x1000: len += sprintf(devidString+len, "  Revision A\r\n"); break;
-	case 0x1001: len += sprintf(devidString+len, "  Revision Z\r\n"); break;
 	default: len += sprintf(devidString+len, " Revision %lX\r\n", revCode); break;
 	}
 
@@ -284,60 +295,60 @@ int main(void)
 
  	printf("Oscillators and clocks\r\n");
  	printf("----------------------\r\n");
- 	//HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
- 	//printf("      Oscillator type: %08lX\r\n", RCC_OscInitStruct.OscillatorType);
 
- 	if (RCC_OscInitStruct.HSEState > 0) {
- 	printf("            HSE State: %08lX\r\n", RCC_OscInitStruct.HSEState);
- 	//printf("          HSE Prediv1: %08lX\r\n", RCC_OscInitStruct.HSEPredivValue);
- 	  } else {
- 	printf("            HSE State: Off\r\n");
+ 	printf("            HSE State: ");
+ 	switch (RCC_OscInitStruct.HSEState)
+ 	{
+ 	case RCC_HSE_OFF: printf("Off\r\n"); break;
+ 	case RCC_HSE_ON:  printf("On\r\n"); break;
+ 	case RCC_HSE_BYPASS: printf("Bypass\r\n"); break;
  	}
 
- 	if (RCC_OscInitStruct.LSEState > 0) {
- 	printf("            LSE State: %08lX\r\n", RCC_OscInitStruct.LSEState);
- 	  } else {
-    printf("            LSE State: Off\r\n");
+
+ 	printf("            LSE State: ");
+ 	switch (RCC_OscInitStruct.LSEState)
+ 	{
+ 	case RCC_LSE_OFF: printf("Off\r\n"); break;
+ 	case RCC_LSE_ON:  printf("On\r\n"); break;
+ 	case RCC_LSE_BYPASS: printf("Bypass\r\n"); break;
  	}
 
- 	if (RCC_OscInitStruct.HSIState > 0) {
- 	printf("            HSI State: On\r\n");
- 	printf("HSI Calibration value: %08lX\r\n", RCC_OscInitStruct.HSICalibrationValue);
- 	  } else {
-    printf("            HSI State: Off\r\n");
+
+ 	printf("            HSI State: ");
+ 	switch (RCC_OscInitStruct.HSIState)
+ 	{
+ 	case RCC_HSI_OFF: printf("Off\r\n"); break;
+ 	case RCC_HSI_ON:  printf("On\r\n"); break;
  	}
 
- 	if (RCC_OscInitStruct.LSIState > 0) {
- 	printf("            LSI State: On\r\n");
- 	  } else {
- 	printf("            LSI State: Off\r\n");
+ 	printf("            LSI State: ");
+ 	switch (RCC_OscInitStruct.LSIState)
+ 	{
+ 	case RCC_LSI_OFF: printf("Off\r\n"); break;
+ 	case RCC_LSI_ON:  printf("On\r\n"); break;
  	}
-
  	if (RCC_OscInitStruct.PLL.PLLState > 0) {
- 		printf("           PLL Source: ");
- 		if (RCC_OscInitStruct.PLL.PLLSource == RCC_PLLSOURCE_HSI)
+ 	printf("           PLL Source: ");
+ 		switch (RCC_OscInitStruct.PLL.PLLSource)
  		{
- 			printf("HSI\r\n");
+ 			case RCC_PLLSOURCE_HSI : printf("HSI\r\n"); break;
+ 			case RCC_PLLSOURCE_HSE : printf("HSE\r\n"); break;
+ 			default : printf("??\r\n");
  		}
- 		if (RCC_OscInitStruct.PLL.PLLSource == RCC_PLLSOURCE_HSE)
- 		{
- 			printf("HSE\r\n");
- 		}
- 	//printf("           PLL Source: %08lX\r\n", RCC_OscInitStruct.PLL.PLLSource);
- 	//printf("       PLL Multiplier: %08lX\r\n", RCC_OscInitStruct.PLL.PLLMUL);
  	}
 
 	uint32_t latency;
 	HAL_RCC_GetClockConfig(&RCC_ClkInitStruct, &latency);
-	//printf("           Clock Type: %08lX\r\n", RCC_ClkInitStruct.ClockType);
+
 	printf("\r\n");
 
 	printf("        SYSCLK Source: ");
 	switch (RCC_ClkInitStruct.SYSCLKSource)
 	{
-		case 0 : printf("HSI\r\n"); break;
-		case 1 : printf("HSE\r\n"); break;
-		case 2 : printf("PLL\r\n"); break;
+		case RCC_SYSCLKSOURCE_HSI : printf("HSI\r\n"); break;
+		case RCC_SYSCLKSOURCE_HSE : printf("HSE\r\n"); break;
+		case RCC_SYSCLKSOURCE_PLLCLK : printf("PLL\r\n"); break;
+		case RCC_SYSCLKSOURCE_PLLRCLK : printf("PLLRCLK\r\n"); break;
 		default : printf("??\r\n");
 	}
 
@@ -438,6 +449,9 @@ int main(void)
 void SystemClock_Config(void)
 {
 
+  //RCC_OscInitTypeDef RCC_OscInitStruct;
+  //RCC_ClkInitTypeDef RCC_ClkInitStruct;
+
     /**Configure the main internal regulator output voltage 
     */
   __HAL_RCC_PWR_CLK_ENABLE();
@@ -446,26 +460,30 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  //RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  //RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  //RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  //RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 180;
+  //RCC_OscInitStruct.PLL.PLLM = 16;
+  RCC_OscInitStruct.PLL.PLLN = 360;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    Error_Handler();
+    _Error_Handler(__FILE__, __LINE__);
   }
 
     /**Activate the Over-Drive mode 
     */
   if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
-    Error_Handler();
+    _Error_Handler(__FILE__, __LINE__);
   }
 
     /**Initializes the CPU, AHB and APB busses clocks 
@@ -479,7 +497,7 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
   {
-    Error_Handler();
+    _Error_Handler(__FILE__, __LINE__);
   }
 
     /**Configure the Systick interrupt time 
@@ -508,7 +526,7 @@ static void MX_USART2_UART_Init(void)
   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
   if (HAL_UART_Init(&huart2) != HAL_OK)
   {
-    Error_Handler();
+    _Error_Handler(__FILE__, __LINE__);
   }
 
 }
@@ -571,14 +589,14 @@ PUTCHAR_PROTOTYPE
   * @param  None
   * @retval None
   */
-void Error_Handler(void)
+void _Error_Handler(char * file, int line)
 {
-  /* USER CODE BEGIN Error_Handler */
+  /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   while(1) 
   {
   }
-  /* USER CODE END Error_Handler */ 
+  /* USER CODE END Error_Handler_Debug */ 
 }
 
 #ifdef USE_FULL_ASSERT

@@ -19,7 +19,7 @@ Oscillators and clocks<br>
             HSI State: On<br>
 HSI Calibration value: 00000010<br>
             LSI State: Off<br>
-           PLL Source: 00000000<br>
+           PLL Source: HSI<br>
 <br>
         SYSCLK Source: PLL<br>
        AHBCLK Divider: 1<br>

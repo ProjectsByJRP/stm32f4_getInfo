@@ -316,7 +316,16 @@ int main(void)
  	}
 
  	if (RCC_OscInitStruct.PLL.PLLState > 0) {
- 	printf("           PLL Source: %08lX\r\n", RCC_OscInitStruct.PLL.PLLSource);
+ 		printf("           PLL Source: ");
+ 		if (RCC_OscInitStruct.PLL.PLLSource == RCC_PLLSOURCE_HSI)
+ 		{
+ 			printf("HSI\r\n");
+ 		}
+ 		if (RCC_OscInitStruct.PLL.PLLSource == RCC_PLLSOURCE_HSE)
+ 		{
+ 			printf("HSE\r\n");
+ 		}
+ 	//printf("           PLL Source: %08lX\r\n", RCC_OscInitStruct.PLL.PLLSource);
  	//printf("       PLL Multiplier: %08lX\r\n", RCC_OscInitStruct.PLL.PLLMUL);
  	}
 

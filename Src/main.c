@@ -67,12 +67,6 @@ static void MX_USART2_UART_Init(void);
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
-#ifndef __UUID_H
-#define __UUID_H
-//#define STM32_UUID ((uint32_t *)0x1FF0F420)
-#define STM32_UUID ((uint32_t *)UID_BASE)
-#endif //__UUID_H
-
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -250,14 +244,23 @@ int main(void)
 	printf("%s", pkgString);
 
 
- 	len = 0;
- 	char idString[44] = {0};
- 	len += sprintf(idString, "Device Unique ID: ");
- 	uint32_t idPart1 = STM32_UUID[0];
- 	uint32_t idPart2 = STM32_UUID[1];
- 	uint32_t idPart3 = STM32_UUID[2];
- 	len += sprintf(idString+len, "%08lX %08lX %08lX\r\n", idPart1, idPart2, idPart3);
- 	printf("%s", idString);
+	len = 0;
+	char idString[2048] = {0};
+	uint32_t word0 = *(uint32_t *)(UID_BASE);
+	uint32_t word1 = *(uint32_t *)(UID_BASE + 0x04);
+	uint32_t word2 = *(uint32_t *)(UID_BASE + 0x08);
+	uint64_t lotNum;
+	char lotNumString[32] = {0};
+	lotNum = ((uint64_t)word2 << 24 ) | (word1 >> 8);
+	len += sprintf(idString, "Device Unique ID: ");
+	len += sprintf(idString+len, "%08lX %08lX %08lX\r\n", word0, word1, word2);
+	uint32_t x = word0 & 0xFFFF;
+	uint32_t y = (word0 & 0xFFFF0000) >> 16;
+	uint32_t wafer = word1 & 0xFF;
+	sprintf(lotNumString, "%s", (char *)&lotNum);
+	len += sprintf(idString+len, "Wafer %ld of Lot %s\r\n", wafer, lotNumString);
+	len += sprintf(idString+len, "Location on wafer: X:%ld, Y:%ld\r\n", x,y);
+	printf("%s", idString);
 
 
 	len = 0;
